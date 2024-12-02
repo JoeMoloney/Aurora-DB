@@ -1,7 +1,6 @@
 package joe.aurora.services.serviceimpls;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import joe.aurora.domain.User.UserEntity;
 import joe.aurora.repositories.UserRepository;
 import joe.aurora.services.UserService;
 import lombok.extern.slf4j.Slf4j;

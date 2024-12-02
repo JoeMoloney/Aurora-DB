@@ -1,4 +1,4 @@
-package joe.aurora.domain.User;
+package joe.aurora.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
