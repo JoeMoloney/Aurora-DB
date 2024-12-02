@@ -1,0 +1,21 @@
+server:
+  port: 4812
+  servlet:
+    context-path: /api
+
+spring:
+  r2dbc:
+    aurora:
+      url: r2dbc:postgresql://localhost:5432/aurora
+      username: aurora_user
+      password: aurora_password
+
+aurora-api:
+  base-url: http://127.0.0.1:8082
+
+logging:
+  level:
+    io.r2dbc.postgresql: DEBUG
+    org.springframework.r2dbc.core: DEBUG
+    org.springframework.data.r2dbc: DEBUG
+    reactor: INFO

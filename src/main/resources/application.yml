@@ -1,0 +1,7 @@
+server:
+  port: 4812
+  servlet:
+    context-path: /api
+
+aurora-api:
+  base-url: ${AURORA_API_URL}
