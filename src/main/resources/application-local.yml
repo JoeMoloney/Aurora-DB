@@ -4,6 +4,8 @@ server:
     context-path: /api
 
 spring:
+  datasource:
+    use-in-memory-db: false
   r2dbc:
     aurora:
       url: r2dbc:postgresql://localhost:5432/aurora
