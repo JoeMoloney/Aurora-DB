@@ -1,15 +1,22 @@
 package joe.aurora.repositories;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import joe.aurora.domain.User.UserEntity;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import io.r2dbc.h2.H2Row;
+import joe.aurora.domain.User;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface UserRepository extends R2dbcRepository<UserEntity, Long> {
+public interface UserRepository extends ReactiveCrudRepository<User, Long> {
 
-    @Query("SELECT u FROM users WHERE u.userId = CAST(:userId AS LONG)")
-    Mono<JsonNode> getUserById(Long userId);
+    @Query("INSERT INTO users (fName, lName) VALUES (:fName, :lName)")
+    Mono<JsonNode> addUser(String fName, String lName);
+
+    @Query("SELECT * FROM users")
+    Flux<H2Row> getAllUsers();
 }
