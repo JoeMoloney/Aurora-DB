@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.r2dbc.h2.H2Row;
 import joe.aurora.domain.User;
 import joe.aurora.repositories.UserRepository;
 import joe.aurora.services.IUserService;
@@ -41,7 +40,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Flux<H2Row> getAllUsers() {
+    public Flux<User> getAllUsers() {
         return userRepository.getAllUsers()
                 .doOnError(thrown -> log.error("UserService getAllUsers Has Thrown An Error: {}", thrown.getMessage()));
     }

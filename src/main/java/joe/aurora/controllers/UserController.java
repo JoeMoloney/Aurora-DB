@@ -2,7 +2,6 @@ package joe.aurora.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import io.r2dbc.h2.H2Row;
 import jakarta.servlet.http.HttpServletRequest;
 import joe.aurora.domain.User;
 import joe.aurora.services.IUserService;
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/getAllUsers")
-    public Flux<H2Row> getAllUsers() {
+    public Flux<User> getAllUsers() {
         return userService.getAllUsers()
                 .log();
     }

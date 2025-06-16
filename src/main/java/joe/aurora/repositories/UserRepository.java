@@ -2,7 +2,6 @@ package joe.aurora.repositories;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import io.r2dbc.h2.H2Row;
 import joe.aurora.domain.User;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
@@ -18,5 +17,8 @@ public interface UserRepository extends ReactiveCrudRepository<User, Long> {
     Mono<JsonNode> addUser(String fName, String lName);
 
     @Query("SELECT * FROM users")
-    Flux<H2Row> getAllUsers();
+    Flux<User> getAllUsers();
+
+    @Query("SELECT u User FROM u users WHERE u.fName = :fName AND u.lName = :lName")
+    Mono<JsonNode> getUserByName(String fName, String lName);
 }
