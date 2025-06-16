@@ -4,20 +4,26 @@ server:
     context-path: /api
 
 spring:
-  datasource:
-    use-in-memory-db: false
   r2dbc:
     aurora:
       url: r2dbc:postgresql://localhost:5432/aurora
       username: aurora_user
-      password: aurora_password
+      password: aurora_pass
 
 aurora-api:
   base-url: http://127.0.0.1:8082
 
+services:
+  aurora_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: examplePassword
+      POSTGRES_USER: exampleUser
+    volumes:
+      - auroradb_pgdata:/var/lib/postgresql/data
+
 logging:
   level:
-    io.r2dbc.postgresql: DEBUG
-    org.springframework.r2dbc.core: DEBUG
-    org.springframework.data.r2dbc: DEBUG
+    org.springframework.r2dbc: INFO
     reactor: INFO
